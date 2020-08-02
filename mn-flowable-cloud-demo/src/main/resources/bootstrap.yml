@@ -1,0 +1,24 @@
+server:
+  port: 10165
+spring:
+  application:
+    name: mn-flowable-cloud-demo
+  cloud:
+    nacos:
+      discovery:
+        server-addr: jeecg-cloud-nacos:8848
+      config:
+        file-extension: yml
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        #shared-dataids: application-jeecg-cloud.yml
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/flowable?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&serverTimezone=UTC
+    username: root
+    password: root
+feign:
+  sentinel:
+    enabled: true
+resttemplate:
+  sentinel:
+    enabled: true

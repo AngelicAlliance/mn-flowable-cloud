@@ -1,0 +1,38 @@
+server:
+  port: 9085
+spring:
+  application:
+    name: mn-flowable-cloud-modeler
+  cloud:
+    nacos:
+      discovery:
+        server-addr: jeecg-cloud-nacos:8848
+      config:
+        file-extension: yml
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        shared-dataids: mn-flowable-cloud.yml
+  resources:
+    static-locations: classpath:/META-INF/
+feign:
+  sentinel:
+    enabled: true
+resttemplate:
+  sentinel:
+    enabled: true
+
+management:
+  endpoint:
+    flowable:
+      enabled: true
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  configuration-properties:
+    prefix:
+    blobType: BLOB
+    boolValue: TRUE
+
+flowable:
+  modeler:
+    app:
+      deployment-api-url: http://mn-flowable-cloud-restapi/app-api
